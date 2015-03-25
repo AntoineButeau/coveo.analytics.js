@@ -51,10 +51,12 @@ Coveo.UA.sendCustomEvent({
   device: 'device',
   userDisplayName: 'userDisplayName',
   customData: {
-    c_custom_dimension_x: 'custom dimension value',
-    c_custom_dimension_y: 'custom dimension value'
+    my_data_x: 'custom dimension value 1',
+    some_other_data_y: 'custom dimension value 2'
   },
   username: 'username',
   language: 'language'
 });
 ```
+
+For more info, see https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost
