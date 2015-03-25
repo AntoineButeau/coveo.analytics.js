@@ -1,6 +1,20 @@
 # coveo.analytics.js
 Send events to the Coveo analytics service. No external dependencies, pure JavaScript solution.
 
+# Quick Start
+To begin sending analytics events using coveo.analytics.js, paste the following snippet into your html page so that it appears before the closing `</head>` tag.
+```html
+<script src="https://static.cloud.coveo.com/ua/coveo.analytics.min.js"></script>
+<script>
+Coveo.UA.token = 'your-token-here';
+Coveo.UA.sendCustomEvent({
+    eventType: 'EventType',
+    eventValue: 'EventValue'
+});
+</script>
+```
+Replace `your-token-here` with your API Key. Change `EventType` and `EventValue` to any event you want to send.
+
 # Usage
 ## Include in your html files.
 
