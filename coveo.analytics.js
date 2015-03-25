@@ -6,8 +6,6 @@ Coveo.UA = {
         if (typeof Coveo.UA.token === 'undefined') {
             console.log('Error: token is not set.');
         } else {
-            var url = 'https://usageanalyticsdev.coveo.com/rest/v13/analytics/custom?access_token=' + Coveo.UA.token;
-
             if (typeof args.eventType === 'undefined') {
                 console.log('Error: eventType is required.');
                 return;
@@ -17,7 +15,7 @@ Coveo.UA = {
                 return;
             }
 
-            customEventData = {
+            var data = {
                 eventType: args.eventType,
                 eventValue: args.eventValue,
                 device: args.device || navigator.userAgent,
@@ -27,14 +25,15 @@ Coveo.UA = {
                 language: args.language || navigator.language || navigator.userLanguage
             }
 
+            var customEventData = encodeURIComponent(JSON.stringify(data));
+            var url = 'https://usageanalyticsdev.coveo.com/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
+
             var request = new XMLHttpRequest();
-            request.open('POST', url, true);
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.withCredentials = true;
+            request.open('GET', url, true);
             request.onerror = function() {
               console.log('UA Event logging failed');
             };
-            request.send(JSON.stringify(customEventData));
+            request.send();
         }
     }
 }
