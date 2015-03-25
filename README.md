@@ -1,5 +1,5 @@
 # coveo.analytics.js
-Send events to coveo analytics service. No external dependencies, pure JavaScript solution.
+Send events to the Coveo analytics service. No external dependencies, pure JavaScript solution.
 
 # Usage
 ## Include in your html files.
