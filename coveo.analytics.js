@@ -26,7 +26,7 @@ Coveo.UA = {
             }
 
             var customEventData = encodeURIComponent(JSON.stringify(data));
-            var url = 'https://usageanalyticsdev.coveo.com/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
+            var url = 'https://usageanalytics.coveo.com/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
 
             var request = new XMLHttpRequest();
             request.open('GET', url, true);
