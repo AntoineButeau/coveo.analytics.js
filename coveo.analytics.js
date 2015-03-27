@@ -18,9 +18,16 @@ Coveo.UA = {
             var data = {
                 eventType: args.eventType,
                 eventValue: args.eventValue,
-                device: args.device || navigator.userAgent,
+                lastSearchQueryUid: args.lastSearchQueryUid,
+                anonymous: args.anonymous,
+                userGroups: args.userGroups,
                 userDisplayName: args.userDisplayName,
                 customData: args.customData || {},
+                device: args.device || navigator.userAgent,
+                mobile: args.mobile,
+                splitTestRunName: args.splitTestRunName,
+                splitTestRunVersion: args.splitTestRunVersion,
+                userAgent: args.userAgent,
                 username: args.username,
                 language: args.language || navigator.language || navigator.userLanguage
             }
@@ -29,6 +36,7 @@ Coveo.UA = {
             var url = 'https://usageanalytics.coveo.com/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
 
             var request = new XMLHttpRequest();
+            request.withCredentials = true;
             request.open('GET', url, true);
             request.onerror = function() {
               console.log('UA Event logging failed');
