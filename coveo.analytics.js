@@ -34,15 +34,15 @@ Coveo.UA = {
             }
 
             var customEventData = encodeURIComponent(JSON.stringify(data));
-            var url = Coveo.UA.endpoint + '/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
-
-            var request = new XMLHttpRequest();
-            request.withCredentials = true;
-            request.open('GET', url, true);
-            request.onerror = function() {
-              console.log('UA Event logging failed');
-            };
-            request.send();
+            var callBackUID = Math.floor(Math.random() * 1000) + 1;
+            var url = Coveo.UA.endpoint +
+                '/rest/v13/analytics/custom?customEvent=' + customEventData +
+                '&access_token=' + Coveo.UA.token +
+                '&callback=Coveo.UA.customEventCallback';
+            var scr = document.createElement('script');
+            scr.src = url;
+            document.body.appendChild(scr);
         }
-    }
+    },
+    customEventCallback: function(response) {}
 }
