@@ -2,6 +2,7 @@ var Coveo = Coveo || {};
 Coveo.UA = {
     token: undefined,
     version: 13,
+    endpoint: 'https://usageanalytics.coveo.com',
     sendCustomEvent: function(args) {
         if (typeof Coveo.UA.token === 'undefined') {
             console.log('Error: token is not set.');
@@ -33,7 +34,7 @@ Coveo.UA = {
             }
 
             var customEventData = encodeURIComponent(JSON.stringify(data));
-            var url = 'https://usageanalytics.coveo.com/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
+            var url = Coveo.UA.endpoint + '/rest/v13/analytics/custom?customEvent='+ customEventData +'&access_token=' + Coveo.UA.token;
 
             var request = new XMLHttpRequest();
             request.withCredentials = true;
