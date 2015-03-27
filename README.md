@@ -45,18 +45,25 @@ Coveo.UA.sendCustomEvent({
 
 ## Optional parameters
 ```js
-Coveo.UA.sendCustomEvent({
-  eventType: 'eventType',
-  eventValue: 'eventValue',
-  device: 'device',
-  userDisplayName: 'userDisplayName',
-  customData: {
-    my_data_x: 'custom dimension value 1',
-    some_other_data_y: 'custom dimension value 2'
-  },
-  username: 'username',
-  language: 'language'
-});
+{
+    eventType: string,
+    eventValue: string,
+    lastSearchQueryUid: string,
+    anonymous: boolean,
+    userGroups: array[string],
+    userDisplayName: string,
+    customData: {
+        my_data_x: 'custom dimension value 1',
+        some_other_data_y: 'custom dimension value 2'
+    },
+    device: string,
+    mobile: boolean,
+    splitTestRunName: string,
+    splitTestRunVersion: string,
+    userAgent: string,
+    username: string,
+    language: string
+}
 ```
 
 For more info, see https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost
