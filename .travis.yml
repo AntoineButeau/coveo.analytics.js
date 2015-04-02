@@ -11,8 +11,7 @@ deploy:
   access_key_id: AKIAJVENS6BH5WCFCG6Q
   secret_access_key:
     secure: Z+N6FzFe0/SJ5bZbH3Yo0wLQwvxjXaq/2+GwOkR5nX8gKTtXQu9kYtUK+cdiBXrVJFXBhWay0qUKVGcdUm59qN4g/i8KhDKMAV0S1m1rGLCv4vsFxt1f4JoKFytPnS5UM0NCIelAgXtXs13mbXFNfYvqw3td+9kHIy7AcvVt4Xs=
-  bucket: cdn.coveodemo.com
-  endpoint: cdn.coveodemo.com.s3-website-us-west-2.amazonaws.com
+  bucket: testcdn.coveodemo.com
   skip_cleanup: true
   local-dir: build
   acl: public_read
