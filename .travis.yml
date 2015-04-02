@@ -1,0 +1,7 @@
+deploy:
+  provider: s3
+  access_key_id: MY AWS ACCESSKEY
+  secret_access_key:
+    secure: TcmIXPbfCKtextYOd9eSPQSSaSsPNtWzAZEuaoVzeAdua3t8c0cwNL4LDUKwVaxW000PErgFmss4EIDpWWmcIkJSw535Dv6Z5XDym7c3ulmtAB9kMXaZAdrI74iKrav9975/tbdzB5gVSlnyIeTQgl4BsWjEaAGxsdk171zL7XA=
+  bucket: cdn.coveodemo.com
+  acl: public_read
