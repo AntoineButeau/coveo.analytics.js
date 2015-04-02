@@ -8,9 +8,9 @@ script:
 - cp coveo.analytics.min.js build/
 deploy:
   provider: s3
-  access_key_id: AKIAJVENS6BH5WCFCG6Q
+  access_key_id: AKIAJ27XTXPEB34RSVEQ
   secret_access_key:
-    secure: DIeortt69DOhuEnX5lO99kgv68uovdjBHEqxIcKawATkM+qAoGHqyyupU2qiuwrQPdd/6gQMb/K42dOI2QqgXOEnHK/IDgYJ1zbS106zUcn5b5ywpdFgfm9xMxSbae1ufGYo2UraM+VBLFaZXxmfsBVJPKtAKCrDK424rTtEKZU=
+    secure: W7follGE8TO7w0FIM70iUhiSRQinHuotGM+QHSzGylfATP4G7TlTsivFuVAOQx9IS4Sr9nSbRZdcohlu1VAcTmxPUgvz++93rVNhOwmOhIfAxVLgVHREo+gdUEIfOPSOCw9NnTrOU1vad/YcD02LmEubqEUW+Z1wugIZkqoZNKc=
   bucket: testcdn.coveodemo.com
   skip_cleanup: true
   local-dir: build
