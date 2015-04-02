@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 script:
-  - npm run min
-  - mkdir build
-  - cp *.js build
+- npm run min
+- mkdir build
+- cp *.js build
 deploy:
   provider: s3
   access_key_id: AKIAJVENS6BH5WCFCG6Q
   secret_access_key:
-    secure: TcmIXPbfCKtextYOd9eSPQSSaSsPNtWzAZEuaoVzeAdua3t8c0cwNL4LDUKwVaxW000PErgFmss4EIDpWWmcIkJSw535Dv6Z5XDym7c3ulmtAB9kMXaZAdrI74iKrav9975/tbdzB5gVSlnyIeTQgl4BsWjEaAGxsdk171zL7XA=
+    secure: Z+N6FzFe0/SJ5bZbH3Yo0wLQwvxjXaq/2+GwOkR5nX8gKTtXQu9kYtUK+cdiBXrVJFXBhWay0qUKVGcdUm59qN4g/i8KhDKMAV0S1m1rGLCv4vsFxt1f4JoKFytPnS5UM0NCIelAgXtXs13mbXFNfYvqw3td+9kHIy7AcvVt4Xs=
   bucket: cdn.coveodemo.com
-  endpoint: cdn.coveodemo.com.s3-website-us-west-2.amazonaws.com
-  skip_cleanup: true
-  local_dir: build
+  local-dir: build
   acl: public_read
+  on:
+    repo: Coveo/analytics.js
