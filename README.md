@@ -9,7 +9,7 @@ Send events to the Coveo Analytics service. No external dependencies, pure JavaS
 in Node:
 
 ```js
-var CoveoUA = require('coveo-usageanalytics');
+var CoveoUA = require('coveo-analytics');
 
 var ua = CoveoUA({token: 'your-token-here'});
 

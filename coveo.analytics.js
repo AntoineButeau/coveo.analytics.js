@@ -17,10 +17,10 @@ var _defaults = {
 };
 
 
-function CoveoUsageAnalytics(options){
+function CoveoAnalytics(options){
     // Do not require new when calling
-    if(!(this instanceof CoveoUsageAnalytics)){
-        return new CoveoUsageAnalytics(options);
+    if(!(this instanceof CoveoAnalytics)){
+        return new CoveoAnalytics(options);
     }
 
 
@@ -34,17 +34,17 @@ function CoveoUsageAnalytics(options){
 
 // Queries
 // get status : gets the status of the analytics service
-CoveoUsageAnalytics.prototype.getStatus = function(){
+CoveoAnalytics.prototype.getStatus = function(){
     // TODO: do the query
     return { status: false };
 };
 // post search : add a search event
-CoveoUsageAnalytics.prototype.sendSearchEvent = function(){ return false; };
+CoveoAnalytics.prototype.sendSearchEvent = function(){ return false; };
 // post searches : add multiple seaches
-CoveoUsageAnalytics.prototype.sendSearchEvents = function(){ return false; };
+CoveoAnalytics.prototype.sendSearchEvents = function(){ return false; };
 // post click : add click event
-CoveoUsageAnalytics.prototype.sendClickEvent = function(){ return false; };
+CoveoAnalytics.prototype.sendClickEvent = function(){ return false; };
 // post custom : add custom events
-CoveoUsageAnalytics.prototype.sendCustomEvent = function(){ return false; };
+CoveoAnalytics.prototype.sendCustomEvent = function(){ return false; };
 // delete session : clears cookies
-CoveoUsageAnalytics.prototype.deleteSession = function(){ return false; };
+CoveoAnalytics.prototype.deleteSession = function(){ return false; };
