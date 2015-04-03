@@ -1,48 +1,46 @@
-var Coveo = Coveo || {};
-Coveo.UA = {
-    token: undefined,
-    version: 13,
-    endpoint: 'https://usageanalytics.coveo.com',
-    sendCustomEvent: function(args) {
-        if (typeof Coveo.UA.token === 'undefined') {
-            console.log('Error: token is not set.');
-        } else {
-            if (typeof args.eventType === 'undefined') {
-                console.log('Error: eventType is required.');
-                return;
-            }
-            if (typeof args.eventValue === 'undefined') {
-                console.log('Error: eventValue is required.');
-                return;
-            }
+'use strict';
 
-            var data = {
-                eventType: args.eventType,
-                eventValue: args.eventValue,
-                lastSearchQueryUid: args.lastSearchQueryUid,
-                anonymous: args.anonymous,
-                userGroups: args.userGroups,
-                userDisplayName: args.userDisplayName,
-                customData: args.customData || {},
-                device: args.device || navigator.userAgent,
-                mobile: args.mobile,
-                splitTestRunName: args.splitTestRunName,
-                splitTestRunVersion: args.splitTestRunVersion,
-                userAgent: args.userAgent,
-                username: args.username,
-                language: args.language || navigator.language || navigator.userLanguage
-            }
+var UA = {};
 
-            var customEventData = encodeURIComponent(JSON.stringify(data));
-            var callBackUID = Math.floor(Math.random() * 1000) + 1;
-            var url = Coveo.UA.endpoint +
-                '/rest/v13/analytics/custom?customEvent=' + customEventData +
-                '&access_token=' + Coveo.UA.token +
-                '&callback=Coveo.UA.customEventCallback';
-            var scr = document.createElement('script');
-            scr.src = url;
-            document.body.appendChild(scr);
-        }
-    },
-    customEventCallback: function(response) {}
+// Let's be able to use it in the browser
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports=Coveo.UA;
+} else {
+    var Coveo = Coveo || {};
+    Coveo.UA = UA;
 }
+
+
+var _defaults = {
+  version:13,
+  endpoint:'https://usageanalytics.coveo.com'
+};
+
+
+function CoveoUsageAnalytics(options){
+  // Do not require new when calling
+  if(!(this instanceof CoveoUsageAnalytics)){
+    return new CoveoUsageAnalytics(options);
+  }
+
+  this.version  = options.version || _defaults.version;
+  this.endpoint = options.endpoint || _defaults.endpoint;
+  this.token    = options.token;
+}
+
+// Queries
+// get status : gets the status of the analytics service
+CoveoUsageAnalytics.prototype.status = function(){
+  // TODO: do the query
+  return false;
+}
+// post search : add a search event
+CoveoUsageAnalytics.prototype.search = function(options){ return false }
+// post searches : add multiple seaches
+CoveoUsageAnalytics.prototype.searches = function(options){ return false }
+// post click : add click event
+CoveoUsageAnalytics.prototype.click = function(options){ return false }
+// post custom : add custom events
+CoveoUsageAnalytics.prototype.custom = function(options){ return false }
+// delete session : clears cookies
+CoveoUsageAnalytics.prototype.deleteSession = function(options){ return false }
