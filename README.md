@@ -9,7 +9,6 @@ Send events to the Coveo Analytics service. No external dependencies, pure JavaS
 in Node:
 
 ```js
-
 var CoveoUA = require('coveo-usageanalytics');
 
 var ua = CoveoUA({token: 'your-token-here'});
@@ -18,4 +17,15 @@ ua.sendCustomEvent({
   eventType: 'Your Custom Event Type',
   eventValue: 'Your Custom Event Value'
 });
+```
+
+in the Browser:
+
+```js
+var ua = Coveo.UA({token: 'your-token-here'})
+
+ua.sendCustomEvent({
+  eventType: 'Your Custom Event Type',
+  eventValue: 'Your Custom Event Value'  
+})
 ```
