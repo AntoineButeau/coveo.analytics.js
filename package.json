@@ -4,6 +4,7 @@
   "description": "Send events to the Coveo Analytics service",
   "main": "coveo.analytics.js",
   "scripts": {
+    "test":"echo \"No test specified\"",
     "min": "npm run uglify",
     "lint": "$(npm bin)/eslint coveo.analytics.js",
     "uglify": "$(npm bin)/uglify -s coveo.analytics.js -o coveo.analytics.min.js"
