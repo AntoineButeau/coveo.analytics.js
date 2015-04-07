@@ -22,7 +22,7 @@
 
         if(callback){
             var callbackName = 'coveoua__' + _getCallbackNONCE();
-            window[callbackName] = function(){
+            root[callbackName] = function(){
                 callback.call(this);
                 delete window[callbackName];
             };
@@ -37,7 +37,7 @@
             paramString += pkey + '=' + encodeURIComponent(val);
         });
 
-        var scr = document.createElement('script');
+        var scr = doc.createElement('script');
         scr.src = url + '?' + paramString;
         doc.body.appendChild(scr);
     };
