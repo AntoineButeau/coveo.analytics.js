@@ -13,16 +13,15 @@ if (typeof module !== 'undefined' && module.exports) {
     }
 }
 
-
 // XHR Utils
-var XHR = window.XMLHttpRequest || noop;
+var XHR = window.XMLHttpRequest;
 
 // JSONP utils
 var _callbackNONCE = Math.floor(Math.random() * 1000) + 1; // Set unique id for jsonp callbacks
 var _getCallbackNONCE = function(){ return (++_callbackNONCE); };
 var _getJSONP = function(url, params, callback){
 
-    var callbackName = '__callback' + _getCallbackNONCE();
+    var callbackName = '__coveoua' + _getCallbackNONCE();
     window[callbackName] = function(){
         callback.call(this);
         delete window[callbackName];
@@ -32,7 +31,7 @@ var _getJSONP = function(url, params, callback){
     var paramString = '';
     var pkeys = Object.keys(params);
     pkeys.forEach(function(pkey){
-        paramString += pkey + '=' + encodeURIComponent(params[pkey]);
+        paramString += pkey + '=' + encodeURIComponent(JSON.stringify(params[pkey]));
     });
 
     var scr = document.createElement('script');
@@ -64,27 +63,156 @@ function CoveoAnalytics(options){
 // returns an object with:
 // { status : '' }
 CoveoAnalytics.prototype.getStatus = function(callback){
-    var url = '/rest/v' + this.version + '/analytics/status';
-    _getJSONP(url,{}, callback);
+    var url = this.endpoint + '/status';
+    _getJSONP(url, {}, callback);
 };
 
-// post search : add a search event
-CoveoAnalytics.prototype.sendSearchEvent = function(){ return false; };
+// CoveoAnalytics.prototype.sendSearchEvent(data,callback)
+// sends a search event logging to the analytics service
+// {
+//   "searchQueryUid": "",
+//   "queryText": "",
+//   "actionCause": "",
+//   "advancedQuery": "",
+//   "resultsPerPage": 0,
+//   "pageNumber": 0,
+//   "numberOfResults": 0,
+//   "contextual": false,
+//   "responseTime": 0,
+//   "results": [
+//     {
+//       "documentUri": "",
+//       "documentUriHash": ""
+//     }
+//   ],
+//   "originLevel1": "",
+//   "originLevel2": "",
+//   "originLevel3": "",
+//   "queryPipeline": "",
+//   "actionType": "",
+//   "anonymous": false,
+//   "userGroups": [
+//     ""
+//   ],
+//   "userDisplayName": "",
+//   "customData": "Map[string,Object]",
+//   "device": "",
+//   "mobile": false,
+//   "splitTestRunName": "",
+//   "splitTestRunVersion": "",
+//   "userAgent": "",
+//   "username": "",
+//   "language": ""
+// }
+CoveoAnalytics.prototype.sendSearchEvent = function(data, callback){
+    var url = this.endpoint + '/search';
+    _getJSONP(url, {searchEvent: data}, callback);
+};
 // post searches : add multiple seaches
-CoveoAnalytics.prototype.sendSearchEvents = function(){ return false; };
+// [
+// {
+//   "searchQueryUid": "",
+//   "queryText": "",
+//   "actionCause": "",
+//   "advancedQuery": "",
+//   "resultsPerPage": 0,
+//   "pageNumber": 0,
+//   "numberOfResults": 0,
+//   "contextual": false,
+//   "responseTime": 0,
+//   "results": [
+//     {
+//       "documentUri": "",
+//       "documentUriHash": ""
+//     }
+//   ],
+//   "originLevel1": "",
+//   "originLevel2": "",
+//   "originLevel3": "",
+//   "queryPipeline": "",
+//   "actionType": "",
+//   "anonymous": false,
+//   "userGroups": [
+//     ""
+//   ],
+//   "userDisplayName": "",
+//   "customData": "Map[string,Object]",
+//   "device": "",
+//   "mobile": false,
+//   "splitTestRunName": "",
+//   "splitTestRunVersion": "",
+//   "userAgent": "",
+//   "username": "",
+//   "language": ""
+// }
+// ]
+CoveoAnalytics.prototype.sendSearchEvents = function(data,callback){
+    var url = this.endpoint + '/searches';
+    _getJSONP(url, {searchEvents: data}, callback);
+};
 // post click : add click event
-CoveoAnalytics.prototype.sendClickEvent = function(){ return false; };
+// {
+//   "documentUri": "",
+//   "documentUriHash": "",
+//   "searchQueryUid": "",
+//   "collectionName": "",
+//   "sourceName": "",
+//   "documentPosition": 0,
+//   "actionCause": "",
+//   "documentTitle": "",
+//   "documentUrl": "",
+//   "queryPipeline": "",
+//   "actionType": "",
+//   "anonymous": false,
+//   "userGroups": [
+//     ""
+//   ],
+//   "userDisplayName": "",
+//   "customData": "Map[string,Object]",
+//   "device": "",
+//   "mobile": false,
+//   "splitTestRunName": "",
+//   "splitTestRunVersion": "",
+//   "userAgent": "",
+//   "username": "",
+//   "language": ""
+// }
+CoveoAnalytics.prototype.sendClickEvent = function(data, callback){
+    var url = this.endpoint + '/click';
+    _getJSONP(url, {searchEvent: data}, callback);
+};
 // post custom : add custom events
+// {
+//   "eventType": "",
+//   "eventValue": "",
+//   "lastSearchQueryUid": "",
+//   "anonymous": false,
+//   "userGroups": [
+//     ""
+//   ],
+//   "userDisplayName": "",
+//   "customData": "Map[string,Object]",
+//   "device": "",
+//   "mobile": false,
+//   "splitTestRunName": "",
+//   "splitTestRunVersion": "",
+//   "userAgent": "",
+//   "username": "",
+//   "language": ""
+// }
 CoveoAnalytics.prototype.sendCustomEvent = function(data, callback){
-    var url = '/rest/v' + this.version + '/analytics/custom';
+    var url = this.endpoint + '/custom';
     // TODO: Add some params if needed
-    _getJSONP(url, data, callback);
+    _getJSONP(url, {customEvent: data}, callback);
 };
 
 // delete session : clears cookies
 CoveoAnalytics.prototype.deleteSession = function(){
-    // Needs to be a delete XHR call
-    return false;
+    var url = this.endpoint + '/click';
+
+    var xhr = new XHR();
+    xhr.onprogress = function(){}; // IE9 ...
+    xhr.open('DELETE', url, false);
 };
 
 // Export

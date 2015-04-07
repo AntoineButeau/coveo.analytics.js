@@ -4,11 +4,12 @@
 
 Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.
 
+[Service Api Documentation](https://usageanalytics.coveo.com/docs/)
+
 # Limitations
 
 - You can't have multiple sessions running.
-
-# Service Api Documentation
+- Should work with `ie9+` , and decent version of `ff/chrome/other...`
 
 # Usage
 
