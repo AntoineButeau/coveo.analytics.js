@@ -146,7 +146,7 @@ CoveoAnalytics.prototype.sendSearchEvent = function(data, callback){
 //   "language": ""
 // }
 // ]
-CoveoAnalytics.prototype.sendSearchEvents = function(data,callback){
+CoveoAnalytics.prototype.sendSearchEvents = function(data, callback){
     var url = this.endpoint + '/searches';
     _getJSONP(url, {searchEvents: data}, callback);
 };
