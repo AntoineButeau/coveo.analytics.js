@@ -4,20 +4,13 @@
 
 Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.
 
+# Limitations
+
+- You can't have multiple sessions running.
+
+# Service Api Documentation
+
 # Usage
-
-in Node:
-
-```js
-var CoveoUA = require('coveo-analytics');
-
-var ua = CoveoUA({token: 'your-token-here'});
-
-ua.sendCustomEvent({
-  eventType: 'Your Custom Event Type',
-  eventValue: 'Your Custom Event Value'
-});
-```
 
 in the Browser:
 
