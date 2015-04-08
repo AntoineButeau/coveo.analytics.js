@@ -35,7 +35,7 @@ ua.sendCustomEvent({
 
 # Api
 
-- *CoveoAnalytics(options)*: instantiate a new analytics event logger
+- **CoveoAnalytics(options)**: instantiate a new analytics event logger
 
 ```js
 var options = {
@@ -44,7 +44,7 @@ var options = {
 }
 ```
 
-- *CoveoAnalytics.getStatus(callback)*: gets the status of the analytics service
+- **CoveoAnalytics.getStatus(callback)**: gets the status of the analytics service
 
 ```js
 // https://usageanalytics.coveo.com/docs/#!/v13_analytics/getServiceStatus
@@ -54,7 +54,7 @@ var callback = function(data){
 }
 ```
 
-- *CoveoAnalytics.sendSearchEvent(data, callback)*: user searched something
+- **CoveoAnalytics.sendSearchEvent(data, callback)**: user searched something
 
 ```js
 var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvent */}
@@ -63,7 +63,7 @@ var callback = function(){
 }
 ```
 
-- *CoveoAnalytics.sendSearchEvents(data, callback)*: sends multiple search events
+- **CoveoAnalytics.sendSearchEvents(data, callback)**: sends multiple search events
 
 ```js
 //
@@ -73,7 +73,7 @@ var callback = function(){
 }
 ```
 
-- *CoveoAnalytics.sendClickEvent(data, callback)*: user clicked on something
+- **CoveoAnalytics.sendClickEvent(data, callback)**: user clicked on something
 
 ```js
 var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addClickEvent */}
@@ -81,7 +81,7 @@ var callback = function(){
   console.log('logged event')
 }
 ```
-- *CoveoAnalytics.sendCustomEvent(data, callback)*: send events other than click/search
+- **CoveoAnalytics.sendCustomEvent(data, callback)**: send events other than click/search
 
 ```js
 var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost */}
@@ -90,5 +90,5 @@ var callback = function(){
 }
 ```
 
-- *CoveoAnalytics.deleteSession()*: clears cookies, you loose your
+- **CoveoAnalytics.deleteSession()**: clears cookies, you loose your
   visitor id, next queries will get you a new one
