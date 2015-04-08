@@ -165,7 +165,7 @@
 
         _getJSONP(url, {clickEvent: data, 'access_token': this.token}, callback);
     };
-    // sendCustonEvent : Sends a custom event (case deflection, ...) into the
+    // sendCustomEvent : Sends a custom event (case deflection, ...) into the
     // usage analytics api
     // data parameter looks like :
     // {
