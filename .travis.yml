@@ -10,7 +10,7 @@ script:
 - npm run test
 - npm run min
 - mkdir deploy
-- cp coveo.analytics.js coveo.analytics.min.js coveo.analytics.map.js deploy/
+- cp coveo.analytics.js coveo.analytics.min.js coveo.analytics.min.map deploy/
 # after_success:
 #    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
