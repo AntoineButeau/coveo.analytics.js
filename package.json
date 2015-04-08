@@ -1,6 +1,6 @@
 {
   "name": "coveo-analytics",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Send events to the Coveo Analytics service",
   "main": "coveo.analytics.js",
   "scripts": {

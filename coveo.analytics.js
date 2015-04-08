@@ -1,4 +1,4 @@
-// coveo.analytics.js 0.0.0
+// coveo.analytics.js 0.1.0
 // https://github.com/coveo/coveo.analytics.js
 // (c) 2015 Coveo
 // freely distributed under the MIT license
@@ -180,7 +180,8 @@
 
     // deleteSession : clears cookies, the cookie contains the visitor id which
     // is used by the usageanalytics api to differentiate bewteen visitors
-CoveoAnalytics.prototype.deleteSession = function(/* TODO: should probably add a callback here */){
+    CoveoAnalytics.prototype.deleteSession = function(/* TODO: should probably add a callback here */){
+        // Adding callback with xhr is different than jsonp we should support it tough
         var url = this.endpoint + '/click';
 
         var xhr = new XHR();
