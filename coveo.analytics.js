@@ -29,17 +29,18 @@
             params.callback = callbackName;
         }
 
-        // TODO: Convert Params to url params if there are any
-        var paramString = '';
+        // Convert params to url params
+        var paramString = [];
         for(var pkey in params){
             if(params.hasOwnProperty(pkey)){
+                // Inner params are or strings or json encoded objects
                 var val = typeof params[pkey] === 'string' ? params[pkey] : JSON.stringify(params[pkey]);
-                paramString += pkey + '=' + encodeURIComponent(val);
+                paramString.push(pkey + '=' + encodeURIComponent(val));
             }
         }
 
         var scr = doc.createElement('script');
-        scr.src = url + '?' + paramString;
+        scr.src = url + '?' + paramString.join('&');
         doc.body.appendChild(scr);
     };
 
@@ -63,6 +64,10 @@
         this.version = options.version || _defaultVersion;
         this.endpoint = options.endpoint || _defaultEndpoint;
         this.token = options.token;
+
+        if(!this.token){
+            console.log('WARNING: CoveoAnalytics -> token not set ');
+        }
     }
 
     // getStatus : gets the status of the analytics service
@@ -112,14 +117,21 @@
     // }
     CoveoAnalytics.prototype.sendSearchEvent = function(data, callback){
         var url = this.endpoint + '/search';
-        _getJSONP(url, {searchEvent: data}, callback);
+
+        // TODO: Checks and default on data
+
+        _getJSONP(url, {searchEvent: data, 'access_token': this.token}, callback);
     };
     // sendSearchEvents : add multiple seach events
     // data contains an array of searchEvent:
     // data : [ searchEvent, ... ]
     CoveoAnalytics.prototype.sendSearchEvents = function(data, callback){
         var url = this.endpoint + '/searches';
-        _getJSONP(url, {searchEvents: data}, callback);
+
+
+        // TODO: Checks and default on data
+
+        _getJSONP(url, {searchEvents: data, 'access_token': this.token}, callback);
     };
     // sendClickEvent: Sends a click event (a document was clicked)
     // data param looks like: {
@@ -150,7 +162,10 @@
     // }
     CoveoAnalytics.prototype.sendClickEvent = function(data, callback){
         var url = this.endpoint + '/click';
-        _getJSONP(url, {clickEvent: data}, callback);
+
+        // TODO: Checks and default on data
+
+        _getJSONP(url, {clickEvent: data, 'access_token': this.token}, callback);
     };
     // sendCustonEvent : Sends a custom event (case deflection, ...) into the
     // usage analytics api
@@ -175,14 +190,18 @@
     // }
     CoveoAnalytics.prototype.sendCustomEvent = function(data, callback){
         var url = this.endpoint + '/custom';
-        _getJSONP(url, {customEvent: data}, callback);
+
+        // TODO: Checks and default on data
+
+        _getJSONP(url, {customEvent: data, 'access_token': this.token}, callback);
     };
 
     // deleteSession : clears cookies, the cookie contains the visitor id which
     // is used by the usageanalytics api to differentiate bewteen visitors
     CoveoAnalytics.prototype.deleteSession = function(/* TODO: should probably add a callback here */){
         // Adding callback with xhr is different than jsonp we should support it tough
-        var url = this.endpoint + '/click';
+        // We probably need the token too i think
+        var url = this.endpoint + '/session';
 
         var xhr = new XHR();
         xhr.onprogress = function(){}; // IE9 ...
