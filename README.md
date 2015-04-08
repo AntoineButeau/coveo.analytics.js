@@ -9,14 +9,22 @@ Send events to the Coveo Analytics service. No external dependencies, pure JavaS
 
 # Limitations
 
-- You can't have multiple sessions running.
+- You can't have multiple sessions running. (cookies)
 - Should work with `ie9+` , and decent version of `ff/chrome/other...`
 
 # Usage
 
+add script in your page:
+
+```html
+<script src="https://static.cloud.coveo.com/ua/coveo.analytics.min.js"></script>
+```
+
 in the Browser:
 
 ```js
+// works with or without new
+// the token can be retrieved by asking an administrator of the coveo cloud org
 var ua = Coveo.UA({token: 'your-token-here'})
 
 ua.sendCustomEvent({
@@ -24,3 +32,63 @@ ua.sendCustomEvent({
   eventValue: 'Your Custom Event Value'  
 })
 ```
+
+# Api
+
+- *CoveoAnalytics(options)*: instantiate a new analytics event logger
+
+```js
+var options = {
+  token: '' // required
+  endpoint: '' // optionnal: defaults to https://usageanalytics.coveo.com/rest/v13/analytics
+}
+```
+
+- *CoveoAnalytics.getStatus(callback)*: gets the status of the analytics service
+
+```js
+// https://usageanalytics.coveo.com/docs/#!/v13_analytics/getServiceStatus
+var callback = function(data){
+  // Format of data: { status: '' }
+  console.log(data.status)
+}
+```
+
+- *CoveoAnalytics.sendSearchEvent(data, callback)*: user searched something
+
+```js
+var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvent */}
+var callback = function(){
+  console.log('logged event')
+}
+```
+
+- *CoveoAnalytics.sendSearchEvents(data, callback)*: sends multiple search events
+
+```js
+//
+var data = [/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvents */]
+var callback = function(){
+  console.log('logged a lot of events')
+}
+```
+
+- *CoveoAnalytics.sendClickEvent(data, callback)*: user clicked on something
+
+```js
+var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addClickEvent */}
+var callback = function(){
+  console.log('logged event')
+}
+```
+- *CoveoAnalytics.sendCustomEvent(data, callback)*: send events other than click/search
+
+```js
+var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost */}
+var callback = function(){
+  console.log('logged event')
+}
+```
+
+- *CoveoAnalytics.deleteSession()*: clears cookies, you loose your
+  visitor id, next queries will get you a new one

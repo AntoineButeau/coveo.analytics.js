@@ -150,7 +150,7 @@
     // }
     CoveoAnalytics.prototype.sendClickEvent = function(data, callback){
         var url = this.endpoint + '/click';
-        _getJSONP(url, {searchEvent: data}, callback);
+        _getJSONP(url, {clickEvent: data}, callback);
     };
     // sendCustonEvent : Sends a custom event (case deflection, ...) into the
     // usage analytics api
@@ -175,13 +175,12 @@
     // }
     CoveoAnalytics.prototype.sendCustomEvent = function(data, callback){
         var url = this.endpoint + '/custom';
-        // TODO: Add some params if needed
         _getJSONP(url, {customEvent: data}, callback);
     };
 
     // deleteSession : clears cookies, the cookie contains the visitor id which
     // is used by the usageanalytics api to differentiate bewteen visitors
-    CoveoAnalytics.prototype.deleteSession = function(){
+CoveoAnalytics.prototype.deleteSession = function(/* TODO: should probably add a callback here */){
         var url = this.endpoint + '/click';
 
         var xhr = new XHR();
