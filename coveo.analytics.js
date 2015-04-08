@@ -118,7 +118,10 @@
 
         // TODO: Checks and default on data
 
-        _getJSONP(url, {searchEvent: data, 'access_token': this.token}, callback);
+        _getJSONP(url, {
+            'searchEvent':  data,
+            'access_token': this.token
+        }, callback);
     };
     // sendSearchEvents : add multiple seach events
     // data contains an array of searchEvent:
@@ -129,7 +132,10 @@
 
         // TODO: Checks and default on data
 
-        _getJSONP(url, {searchEvents: data, 'access_token': this.token}, callback);
+        _getJSONP(url, {
+            'searchEvents': data,
+            'access_token': this.token
+        }, callback);
     };
     // sendClickEvent: Sends a click event (a document was clicked)
     // data param looks like: {
@@ -163,7 +169,10 @@
 
         // TODO: Checks and default on data
 
-        _getJSONP(url, {clickEvent: data, 'access_token': this.token}, callback);
+        _getJSONP(url, {
+            clickEvent:     data,
+            'access_token': this.token
+        }, callback);
     };
     // sendCustonEvent : Sends a custom event (case deflection, ...) into the
     // usage analytics api
@@ -191,7 +200,10 @@
 
         // TODO: Checks and default on data
 
-        _getJSONP(url, {customEvent: data, 'access_token': this.token}, callback);
+        _getJSONP(url, {
+            'customEvent':  data,
+            'access_token': this.token
+        }, callback);
     };
 
     // deleteSession : clears cookies, the cookie contains the visitor id which
