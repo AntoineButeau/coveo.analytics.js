@@ -1,11 +1,19 @@
 language: node_js
+notifications:
+  email:
+    on_success: never
+    on_failure: never
 node_js:
 - stable
 script:
+- npm run lint
+- npm run test
 - npm run min
-- mkdir build
-- cp coveo.analytics.js build/
-- cp coveo.analytics.min.js build/
+- mkdir deploy
+- cp coveo.analytics.js deploy/
+- cp coveo.analytics.min.js deploy/
+# after_success:
+#    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: s3
   access_key_id: AKIAJ27XTXPEB34RSVEQ
@@ -13,7 +21,7 @@ deploy:
     secure: W7follGE8TO7w0FIM70iUhiSRQinHuotGM+QHSzGylfATP4G7TlTsivFuVAOQx9IS4Sr9nSbRZdcohlu1VAcTmxPUgvz++93rVNhOwmOhIfAxVLgVHREo+gdUEIfOPSOCw9NnTrOU1vad/YcD02LmEubqEUW+Z1wugIZkqoZNKc=
   bucket: testcdn.coveodemo.com
   skip_cleanup: true
-  local-dir: build
+  local-dir: deploy
   acl: public_read
   on:
     repo: Coveo/analytics.js

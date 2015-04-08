@@ -1,72 +1,94 @@
 # coveo.analytics.js
 
 [![Build Status](https://travis-ci.org/Coveo/analytics.js.svg?branch=master)](https://travis-ci.org/Coveo/analytics.js)
+[![Coverage Status](https://coveralls.io/repos/Coveo/analytics.js/badge.svg?branch=master)](https://coveralls.io/r/Coveo/analytics.js?branch=master)
 
 Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.
 
-# TL;DR
-To send analytics events when your page is loaded, paste the following snippet into your html page so that it appears before the closing `</head>` tag.
-```html
-<script src="https://static.cloud.coveo.com/ua/coveo.analytics.min.js"></script>
-<script>
-Coveo.UA.token = 'your-token-here';
-Coveo.UA.sendCustomEvent({
-    eventType: 'EventType',
-    eventValue: 'EventValue'
-});
-</script>
-```
-Replace `your-token-here` with your API Key. Change `EventType` and `EventValue` to any custom event you want to send.
+[Service Api Documentation](https://usageanalytics.coveo.com/docs/)
+
+# Limitations
+
+- You can't have multiple sessions running. (cookies)
+- Should work with `ie9+` , and decent version of `ff/chrome/other...`
 
 # Usage
-## Include in your html files.
 
-Using our CloudFront CDN:
+add script in your page:
+
 ```html
 <script src="https://static.cloud.coveo.com/ua/coveo.analytics.min.js"></script>
 ```
 
-Using locally:
-```html
-<script src="path/to/coveo.analytics.min.js"></script>
-```
-
-## Set your access token
-Ask your administrator for an API key
+in the Browser:
 
 ```js
-Coveo.UA.token = 'aaaaaaaa-bbbbbbbb-cccccccc-ddddddddd';
+// works with or without new
+// the token can be retrieved by asking an administrator of the coveo cloud org
+var ua = Coveo.UA({token: 'your-token-here'})
+
+ua.sendCustomEvent({
+  eventType: 'Your Custom Event Type',
+  eventValue: 'Your Custom Event Value'  
+})
 ```
 
-## Send events
-```js
-Coveo.UA.sendCustomEvent({
-    eventType: 'Your event type here',
-    eventValue: 'Event Value'
-});
-```
+# Api
 
-## Optional parameters
+**CoveoAnalytics(options)**: instantiate a new analytics event logger
+
 ```js
-{
-    eventType: string,
-    eventValue: string,
-    lastSearchQueryUid: string,
-    anonymous: boolean,
-    userGroups: array[string],
-    userDisplayName: string,
-    customData: {
-        my_data_x: 'custom dimension value 1',
-        some_other_data_y: 'custom dimension value 2'
-    },
-    device: string,
-    mobile: boolean,
-    splitTestRunName: string,
-    splitTestRunVersion: string,
-    userAgent: string,
-    username: string,
-    language: string
+var options = {
+  token: '' // required
+  endpoint: '' // optionnal: defaults to https://usageanalytics.coveo.com/rest/v13/analytics
 }
 ```
 
-For more info, see https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost
+**CoveoAnalytics.getStatus(callback)**: gets the status of the analytics service
+
+```js
+// https://usageanalytics.coveo.com/docs/#!/v13_analytics/getServiceStatus
+var callback = function(data){
+  // Format of data: { status: '' }
+  console.log(data.status)
+}
+```
+
+**CoveoAnalytics.sendSearchEvent(data, callback)**: user searched something
+
+```js
+var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvent */}
+var callback = function(){
+  console.log('logged event')
+}
+```
+
+**CoveoAnalytics.sendSearchEvents(data, callback)**: sends multiple search events
+
+```js
+//
+var data = [/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvents */]
+var callback = function(){
+  console.log('logged a lot of events')
+}
+```
+
+**CoveoAnalytics.sendClickEvent(data, callback)**: user clicked on something
+
+```js
+var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addClickEvent */}
+var callback = function(){
+  console.log('logged event')
+}
+```
+**CoveoAnalytics.sendCustomEvent(data, callback)**: send events other than click/search
+
+```js
+var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost */}
+var callback = function(){
+  console.log('logged event')
+}
+```
+
+**CoveoAnalytics.deleteSession()**: clears cookies, you loose your visitor id,
+ next queries will get you a new one
