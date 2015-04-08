@@ -12,6 +12,21 @@ Send events to the Coveo Analytics service. No external dependencies, pure JavaS
 - You can't have multiple sessions running. (cookies)
 - Should work with `ie9+` , and decent version of `ff/chrome/other...`
 
+# Development
+
+```sh
+# install development dependencies
+npm install
+# Check standard respects (tabs and spaces should be automatic if your editor
+# supports editorconfig http://editorconfig.org/)
+npm run lint
+# Run tests automatically (open your browser on http://localhost:9876 )
+npm run testlive
+# Wanna see other available tasks
+# just run:
+npm run
+```
+
 # Usage
 
 add script in your page:
