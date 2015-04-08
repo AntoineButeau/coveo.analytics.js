@@ -32,7 +32,7 @@ npm run
 add script in your page:
 
 ```html
-<script src="https://static.cloud.coveo.com/ua/coveo.analytics.min.js"></script>
+<script src="https://static.cloud.coveo.com/ua/0.1.0/coveo.analytics.min.js"></script>
 ```
 
 in the Browser:
