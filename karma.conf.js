@@ -1,6 +1,11 @@
 module.exports = function(config){
     config.set({
+        files: ['*.js', 'tests/*.js'],
+
         frameworks: ['jasmine'],
-        files: ['*.js','tests/*.js']
+        // https://www.npmjs.com/browse/keyword/karma-reporter
+        reporters: ['progress'],
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: []
     });
 };
