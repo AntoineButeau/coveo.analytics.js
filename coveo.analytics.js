@@ -18,8 +18,6 @@
     var _getCallbackNONCE = function(){ return (++_callbackNONCE); };
     var _getJSONP = function(url, params, callback){
 
-        if(!params){ params = {}; }
-
         if(callback){
             var callbackName = 'coveoua__' + _getCallbackNONCE();
             root[callbackName] = function(){
