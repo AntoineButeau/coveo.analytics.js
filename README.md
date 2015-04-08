@@ -24,7 +24,7 @@ in the Browser:
 
 ```js
 // works with or without new
-// the token can be retrieved by asking an administrator of the coveo cloud org
+// the token can be retrieved by contacting Coveo Support
 var ua = Coveo.UA({token: 'your-token-here'})
 
 ua.sendCustomEvent({
@@ -40,7 +40,7 @@ ua.sendCustomEvent({
 ```js
 var options = {
   token: '' // required
-  endpoint: '' // optionnal: defaults to https://usageanalytics.coveo.com/rest/v13/analytics
+  endpoint: '' // optional: defaults to https://usageanalytics.coveo.com/rest/v13/analytics
 }
 ```
 
