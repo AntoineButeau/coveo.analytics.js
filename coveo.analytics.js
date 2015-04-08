@@ -1,7 +1,7 @@
-// coveo.analytics.js 0.1.0
-// https://github.com/coveo/coveo.analytics.js
-// (c) 2015 Coveo
-// freely distributed under the MIT license
+//* coveo.analytics.js 0.1.0
+//* https://github.com/coveo/coveo.analytics.js
+//* (c) 2015 Coveo
+//* freely distributed under the MIT license
 
 (function(){
     'use strict';
