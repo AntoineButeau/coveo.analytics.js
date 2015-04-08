@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Coveo/analytics.js",
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "eslint": "^0.18.0",
     "jasmine-core": "^2.2.0",
     "karma": "^0.12.31",

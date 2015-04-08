@@ -14,6 +14,8 @@ script:
 - mkdir deploy
 - cp coveo.analytics.js deploy/
 - cp coveo.analytics.min.js deploy/
+# after_success:
+#    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: s3
   access_key_id: AKIAJ27XTXPEB34RSVEQ
