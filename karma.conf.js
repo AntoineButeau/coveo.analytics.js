@@ -4,8 +4,14 @@ module.exports = function(config){
 
         frameworks: ['jasmine'],
         // https://www.npmjs.com/browse/keyword/karma-reporter
-        reporters: ['progress'],
+        reporters: ['progress','coverage','coveralls'],
         // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: []
+        browsers: [],
+        preprocessors: { '*.js':['coverage'] },
+
+        coverageReporter:{
+            type: 'lcov',
+            dir: 'coverage'
+        }
     });
 };
