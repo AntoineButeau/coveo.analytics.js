@@ -3,8 +3,6 @@ notifications:
   email:
     on_success: never
     on_failure: never
-  slack:
-    secure: RuHO6QHopumbPdaZ15eK6rUAEBgPmQVV6knhNbvw2b+d6vaq6QqYPiOTJuzkZvVa22RLAa//2tDhPxQZm1BEjjpQZjX3bp5Ao6vH2dsQ2LMaeSgY69G6KHsfAgQicuQKYNBXNx9iKnnWxO5Z713KbNCeDuSqgI0MJiS52NuH3mo=
 node_js:
 - stable
 script:
