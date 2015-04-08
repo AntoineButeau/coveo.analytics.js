@@ -23,4 +23,5 @@ deploy:
   local-dir: deploy
   acl: public_read
   on:
+    branch: release
     repo: Coveo/analytics.js
