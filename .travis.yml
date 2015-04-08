@@ -1,9 +1,15 @@
 language: node_js
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    secure: YhlPiadb/X+jcFJ+rq5YOgth+Etj/wK9WgvlKsOxuz1SvhtI7lze2nyA5cA5JMHFlPCgb1AznAtfseDZ9KS8UlrrTAGXPtVEFj/Gkokc3YP6176NV4WRp/kDyjJNTgkKndvwA3OUiYmfvFQ+qqnE9I1l6MMys/bpysZpSSVnqWU=
 node_js:
 - stable
 script:
 - npm run lint
-- npm run testonce
+- npm run test
 - npm run min
 - mkdir deploy
 - cp coveo.analytics.js deploy/
