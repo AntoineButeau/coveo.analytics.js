@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/Coveo/analytics.js.svg?branch=master)](https://travis-ci.org/Coveo/analytics.js)
 [![Coverage Status](https://coveralls.io/repos/pastjean/coveo.analytics.js/badge.svg)](https://coveralls.io/r/pastjean/coveo.analytics.js)
-
+[![Coverage Status](https://coveralls.io/repos/pastjean/coveo.analytics.js/badge.svg?branch=master)](https://coveralls.io/r/pastjean/coveo.analytics.js?branch=master)
 Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.
 
 [Service Api Documentation](https://usageanalytics.coveo.com/docs/)
