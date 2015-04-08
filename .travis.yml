@@ -3,6 +3,7 @@ node_js:
 - stable
 script:
 - npm run lint
+- npm run testonce
 - npm run min
 - mkdir deploy
 - cp coveo.analytics.js deploy/
