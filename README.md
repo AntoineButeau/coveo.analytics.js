@@ -90,5 +90,4 @@ var callback = function(){
 }
 ```
 
-**CoveoAnalytics.deleteSession()**: clears cookies, you loose your visitor id,
- next queries will get you a new one
+**CoveoAnalytics.deleteSession()**: clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.
