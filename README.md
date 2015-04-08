@@ -1,7 +1,7 @@
 # coveo.analytics.js
 
 [![Build Status](https://travis-ci.org/Coveo/analytics.js.svg?branch=master)](https://travis-ci.org/Coveo/analytics.js)
-[![Coverage Status](https://coveralls.io/repos/Coveo/analytics.js/badge.svg?branch=master)](https://coveralls.io/r/Coveo/analytics.js?branch=master)
+[![Coverage Status](https://coveralls.io/repos/Coveo/analytics.js/badge.svg)](https://coveralls.io/r/Coveo/analytics.js)
 
 Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.
 
