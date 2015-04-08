@@ -24,7 +24,7 @@ in the Browser:
 
 ```js
 // works with or without new
-// the token can be retrieved by asking an administrator of the coveo cloud org
+// the token can be retrieved by contacting Coveo Support
 var ua = Coveo.UA({token: 'your-token-here'})
 
 ua.sendCustomEvent({
@@ -40,7 +40,7 @@ ua.sendCustomEvent({
 ```js
 var options = {
   token: '' // required
-  endpoint: '' // optionnal: defaults to https://usageanalytics.coveo.com/rest/v13/analytics
+  endpoint: '' // optional: defaults to https://usageanalytics.coveo.com/rest/v13/analytics
 }
 ```
 
@@ -90,5 +90,4 @@ var callback = function(){
 }
 ```
 
-**CoveoAnalytics.deleteSession()**: clears cookies, you loose your visitor id,
- next queries will get you a new one
+**CoveoAnalytics.deleteSession()**: clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.
