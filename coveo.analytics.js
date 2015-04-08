@@ -11,7 +11,7 @@
     var doc = this.document;
 
     // XHR Utils
-    var XHR = window.XMLHttpRequest;
+    var XHR = root.XMLHttpRequest;
 
     // JSONP utils
     var _callbackNONCE = Math.floor(Math.random() * 1000) + 1; // Set unique id for jsonp callbacks
@@ -23,19 +23,20 @@
         if(callback){
             var callbackName = 'coveoua__' + _getCallbackNONCE();
             root[callbackName] = function(){
-                callback.call(this);
-                delete window[callbackName];
+                callback.apply(this, arguments);
+                delete root[callbackName];
             };
             params.callback = callbackName;
         }
+
         // TODO: Convert Params to url params if there are any
         var paramString = '';
-        var pkeys = Object.keys(params);
-        pkeys.forEach(function(pkey){
-            var val = typeof params[pkey] === "string" ? params[pkey] : JSON.stringify(params[pkey]);
-
-            paramString += pkey + '=' + encodeURIComponent(val);
-        });
+        for(var pkey in params){
+            if(params.hasOwnProperty(pkey)){
+                var val = typeof params[pkey] === 'string' ? params[pkey] : JSON.stringify(params[pkey]);
+                paramString += pkey + '=' + encodeURIComponent(val);
+            }
+        }
 
         var scr = doc.createElement('script');
         scr.src = url + '?' + paramString;
