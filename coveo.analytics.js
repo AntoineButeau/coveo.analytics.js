@@ -11,7 +11,7 @@
     var doc = this.document;
 
     // XHR Utils
-    var XHR = root.XMLHttpRequest;
+    // var XHR = root.XMLHttpRequest;
 
     // JSONP utils
     var _callbackNONCE = Math.floor(Math.random() * 1000) + 1; // Set unique id for jsonp callbacks
@@ -203,20 +203,20 @@
 
         // TODO: Checks and default on data
         var eventData = {
-                eventType: data.eventType,
-                eventValue: data.eventValue,
-                lastSearchQueryUid: data.lastSearchQueryUid,
-                anonymous: data.anonymous,
-                userGroups: data.userGroups,
-                userDisplayName: data.userDisplayName,
-                customData: data.customData || {},
-                device: data.device || navigator.userAgent,
-                mobile: data.mobile,
-                splitTestRunName: data.splitTestRunName,
+                eventType:           data.eventType,
+                eventValue:          data.eventValue,
+                lastSearchQueryUid:  data.lastSearchQueryUid,
+                anonymous:           data.anonymous,
+                userGroups:          data.userGroups,
+                userDisplayName:     data.userDisplayName,
+                customData:          data.customData || {},
+                device:              data.device || navigator.userAgent,
+                mobile:              data.mobile,
+                splitTestRunName:    data.splitTestRunName,
                 splitTestRunVersion: data.splitTestRunVersion,
-                userAgent: data.userAgent,
-                username: data.username,
-                language: data.language || navigator.language || navigator.userLanguage
+                userAgent:           data.userAgent,
+                username:            data.username,
+                language:            data.language || navigator.language || navigator.userLanguage
         };
 
         _getJSONP(url, {
