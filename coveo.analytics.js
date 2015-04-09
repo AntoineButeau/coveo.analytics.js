@@ -18,14 +18,17 @@
     var _getCallbackNONCE = function(){ return (++_callbackNONCE); };
     var _getJSONP = function(url, params, callback){
 
-        if(callback){
-            var callbackName = 'coveoua__' + _getCallbackNONCE();
-            root[callbackName] = function(){
-                callback.apply(this, arguments);
-                delete root[callbackName];
-            };
-            params.callback = callbackName;
+        if(!callback || (typeof callback !== 'function')){
+            callback = function(){};
         }
+
+
+        var callbackName = 'coveoua__' + _getCallbackNONCE();
+        root[callbackName] = function(){
+            callback.apply(this, arguments);
+            delete root[callbackName];
+        };
+        params.callback = callbackName;
 
         // Convert params to url params
         var paramString = [];
@@ -199,23 +202,52 @@
         var url = this.endpoint + '/custom';
 
         // TODO: Checks and default on data
+        var eventData = {
+                eventType: data.eventType,
+                eventValue: data.eventValue,
+                lastSearchQueryUid: data.lastSearchQueryUid,
+                anonymous: data.anonymous,
+                userGroups: data.userGroups,
+                userDisplayName: data.userDisplayName,
+                customData: data.customData || {},
+                device: data.device || navigator.userAgent,
+                mobile: data.mobile,
+                splitTestRunName: data.splitTestRunName,
+                splitTestRunVersion: data.splitTestRunVersion,
+                userAgent: data.userAgent,
+                username: data.username,
+                language: data.language || navigator.language || navigator.userLanguage
+        };
 
         _getJSONP(url, {
-            'customEvent':  data,
+            'customEvent':  eventData,
             'access_token': this.token
         }, callback);
     };
 
     // deleteSession : clears cookies, the cookie contains the visitor id which
     // is used by the usageanalytics api to differentiate bewteen visitors
-    CoveoAnalytics.prototype.deleteSession = function(/* TODO: should probably add a callback here */){
-        // Adding callback with xhr is different than jsonp we should support it tough
-        // We probably need the token too i think
-        var url = this.endpoint + '/session';
-
-        var xhr = new XHR();
-        xhr.onprogress = function(){}; // IE9 ...
-        xhr.open('DELETE', url, false);
+    CoveoAnalytics.prototype.deleteSession = function(callback){
+        // TODO: this call doesnt work server side.
+        console.warn('WARNING: this call doesn\'t work, in order to delete your'
+        + ' session, send a request with a new visitor id ');
+        // // Adding callback with xhr is different than jsonp we should support it tough
+        // // We probably need the token too i think
+        // var url = this.endpoint + '/session?';
+        // var xhr = new XHR();
+        // xhr.onprogress = function(){}; // IE9 ...
+        // xhr.open('DELETE', url, false);
+        // if(callback && (typeof callback === 'function')){
+        //     xhr.onreadystatechange = function(){
+        //         if(xhr.readyState === 4){
+        //             callback();
+        //         }
+        //     };
+        // }
+        // // In order to send cookie we need to use withCredentials
+        // xhr.withCredentials = true;
+        //
+        // xhr.send(null);
     };
 
     // Export CoveoAnalytics so we are able to use it in **node.js**
