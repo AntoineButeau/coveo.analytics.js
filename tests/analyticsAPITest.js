@@ -43,13 +43,6 @@ describe('CoveoAnalytics/Analytics', function() {
             sourceName:       'That coveo Source',
             documentPosition: 0
         };
-        // var data = {
-        //     documentUri:      'test',
-        //     searchQueryUid:   '000-000-000',
-        //     documentPosition: 1,
-        //     actionCause: 'documentOpen',
-        //     actionType:'document'
-        // }
 
         ua.sendClickEvent(data, function(){
             // currently only check if the callback is called
