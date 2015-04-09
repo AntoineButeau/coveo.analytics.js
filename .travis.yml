@@ -4,14 +4,14 @@ notifications:
     on_success: never
     on_failure: never
 node_js:
-- stable
+  - stable
 script:
-- npm run lint
-- npm run test
-- npm run min
-- mkdir deploy
-- cp coveo.analytics.js coveo.analytics.min.js coveo.analytics.min.map deploy/
-# after_success:
+  - npm run lint
+  - npm run test
+  - npm run min
+after_success:
+  - mkdir -p "deploy/$TRAVIS_TAG"
+  - cp coveo.analytics.js coveo.analytics.min.js coveo.analytics.min.map "deploy/$TRAVIS_TAG"
 #    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
 deploy:
   provider: s3
