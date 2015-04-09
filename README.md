@@ -48,7 +48,7 @@ ua.sendCustomEvent({
 })
 ```
 
-# Api
+# API
 
 **CoveoAnalytics(options)**: instantiate a new analytics event logger
 
