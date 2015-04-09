@@ -1,6 +1,6 @@
 module.exports = function(config){
     config.set({
-        files: ['*.js', 'tests/*.js'],
+        files: ['coveo.analytics.js', 'tests/*.js'],
 
         frameworks: ['jasmine'],
         // https://www.npmjs.com/browse/keyword/karma-reporter
