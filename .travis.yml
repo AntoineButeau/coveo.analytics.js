@@ -18,9 +18,10 @@ deploy:
   access_key_id: AKIAJ27XTXPEB34RSVEQ
   secret_access_key:
     secure: W7follGE8TO7w0FIM70iUhiSRQinHuotGM+QHSzGylfATP4G7TlTsivFuVAOQx9IS4Sr9nSbRZdcohlu1VAcTmxPUgvz++93rVNhOwmOhIfAxVLgVHREo+gdUEIfOPSOCw9NnTrOU1vad/YcD02LmEubqEUW+Z1wugIZkqoZNKc=
-  bucket: testcdn.coveodemo.com
+  bucket: static.coveodemo.com
   skip_cleanup: true
   local-dir: deploy
+  upload-dir: coveo.analytics.js
   acl: public_read
   on:
     tags: true
