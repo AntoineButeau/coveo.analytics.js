@@ -10,7 +10,7 @@ Send events to the Coveo Analytics service. No external dependencies, pure JavaS
 # Limitations
 
 - You can't have multiple sessions running. (cookies)
-- Should work with `ie9+` , and decent version of `ff/chrome/other...`
+- Works with `IE9+` and recent versions of `Firefox/Chrome/other...`
 
 # Development
 
