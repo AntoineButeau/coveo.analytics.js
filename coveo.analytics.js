@@ -76,7 +76,7 @@
     // { status : '' }
     CoveoAnalytics.prototype.getStatus = function(callback){
         var url = this.endpoint + '/status';
-        _getJSONP(url, {}, callback);
+        _getJSONP(url, {/* jsonp call requires a data object even if empty*/}, callback);
     };
 
     // sendSearchEvent: Sends a search event (something was searched)
@@ -223,31 +223,6 @@
             'customEvent':  eventData,
             'access_token': this.token
         }, callback);
-    };
-
-    // deleteSession : clears cookies, the cookie contains the visitor id which
-    // is used by the usageanalytics api to differentiate bewteen visitors
-    CoveoAnalytics.prototype.deleteSession = function(callback){
-        // TODO: this call doesnt work server side.
-        console.warn('WARNING: this call doesn\'t work, in order to delete your'
-        + ' session, send a request with a new visitor id ');
-        // // Adding callback with xhr is different than jsonp we should support it tough
-        // // We probably need the token too i think
-        // var url = this.endpoint + '/session?';
-        // var xhr = new XHR();
-        // xhr.onprogress = function(){}; // IE9 ...
-        // xhr.open('DELETE', url, false);
-        // if(callback && (typeof callback === 'function')){
-        //     xhr.onreadystatechange = function(){
-        //         if(xhr.readyState === 4){
-        //             callback();
-        //         }
-        //     };
-        // }
-        // // In order to send cookie we need to use withCredentials
-        // xhr.withCredentials = true;
-        //
-        // xhr.send(null);
     };
 
     // Export CoveoAnalytics so we are able to use it in **node.js**

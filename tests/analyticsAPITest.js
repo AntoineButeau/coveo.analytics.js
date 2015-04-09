@@ -70,23 +70,4 @@ describe('CoveoAnalytics/Analytics', function() {
         });
     });
 
-    it('should be able to delete session', function(done){
-        var eventData = {
-                eventType:  'unit test',
-                eventValue: 'customEvent'
-        };
-
-        var ua = _getNewUA();
-
-        ua.sendCustomEvent(eventData, function(resp){
-            ua.deleteSession(function(){
-                ua.sendCustomEvent(eventData, function(resp2){
-                    expect(resp.visitId).not.toBe(resp2.visitId);
-                    done();
-                });
-            });
-
-        });
-
-    });
 });
