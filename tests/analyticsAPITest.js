@@ -29,19 +29,19 @@ describe('CoveoAnalytics/Analytics', function() {
     it('should be able to get the status of the service even without callback', function(done) {
         var ua = _getNewUA();
         ua.getStatus();
-        done()
+        done();
     });
 
     it('should be able send click events', function(done) {
         var ua = _getNewUA();
 
         var data = {
-            "actionCause":"documentOpen",
-            "searchQueryUid":"dc39ef98-f06c-48f9-8c61-3425714b8fc0",
-            "documentUri":"http://uri.com",
-            "documentUriHash":"4p1+Qt7oxARhuldx",
-            "sourceName":"That coveo Source",
-            "documentPosition":0,
+            actionCause:      'documentOpen',
+            searchQueryUid:   'dc39ef98-f06c-48f9-8c61-3425714b8fc0',
+            documentUri:      'http://uri.com',
+            documentUriHash:  '4p1+Qt7oxARhuldx',
+            sourceName:       'That coveo Source',
+            documentPosition: 0
         };
         // var data = {
         //     documentUri:      'test',
