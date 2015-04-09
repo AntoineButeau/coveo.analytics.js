@@ -91,18 +91,32 @@ var callback = function(){
 **CoveoAnalytics.sendClickEvent(data, callback)**: user clicked on something
 
 ```js
-var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addClickEvent */}
-var callback = function(){
-  console.log('logged event')
+// Required params are here
+// You can find others at: https://usageanalytics.coveo.com/docs/#!/v13_analytics/addClickEvent
+var data = {
+  "actionCause":"documentOpen",
+  "searchQueryUid":"dc39ef98-f06c-48f9-8c61-3425714b8fc0",
+  "documentUri":"http://uri.com",
+  "documentUriHash":"4p1+Qt7oxARhuldx",
+  "sourceName":"That coveo Source",
+  "documentPosition":0,
+}
+var callback = function(resp){
+  console.log('logged event with', resp)
 }
 ```
 **CoveoAnalytics.sendCustomEvent(data, callback)**: send events other than click/search
 
 ```js
-var data = {/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost */}
-var callback = function(){
-  console.log('logged event')
+// Required params are here
+// You can find others at: https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost
+var data = {
+  eventType:  'theeventtype',
+  eventValue: 'eventvalue'
+};
+var callback = function(resp){
+  console.log('logged event with', resp)
 }
 ```
 
-**CoveoAnalytics.deleteSession()**: clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.
+**CoveoAnalytics.deleteSession()**: **this call is not yet supported (to be released soon)** clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.

@@ -117,6 +117,8 @@
     //   "language": ""
     // }
     CoveoAnalytics.prototype.sendSearchEvent = function(data, callback){
+        if(!this.token){ return false; }
+
         var url = this.endpoint + '/search';
 
         // TODO: Checks and default on data
@@ -130,8 +132,9 @@
     // data contains an array of searchEvent:
     // data : [ searchEvent, ... ]
     CoveoAnalytics.prototype.sendSearchEvents = function(data, callback){
-        var url = this.endpoint + '/searches';
+        if(!this.token){ return false; }
 
+        var url = this.endpoint + '/searches';
 
         // TODO: Checks and default on data
 
@@ -140,81 +143,78 @@
             'access_token': this.token
         }, callback);
     };
+
     // sendClickEvent: Sends a click event (a document was clicked)
-    // data param looks like: {
-    //   "documentUri": "",
-    //   "documentUriHash": "",
-    //   "searchQueryUid": "",
-    //   "collectionName": "",
-    //   "sourceName": "",
-    //   "documentPosition": 0,
-    //   "actionCause": "",
-    //   "documentTitle": "",
-    //   "documentUrl": "",
-    //   "queryPipeline": "",
-    //   "actionType": "",
-    //   "anonymous": false,
-    //   "userGroups": [
-    //     ""
-    //   ],
-    //   "userDisplayName": "",
-    //   "customData": "Map[string,Object]",
-    //   "device": "",
-    //   "mobile": false,
-    //   "splitTestRunName": "",
-    //   "splitTestRunVersion": "",
-    //   "userAgent": "",
-    //   "username": "",
-    //   "language": ""
+    //
+    // required params are:
+    // var data = {
+    //     "actionCause":"documentOpen",
+    //     "searchQueryUid":"dc39ef98-f06c-48f9-8c61-3425714b8fc0", // needs to be well formed
+    //     "documentUri":"https://example.com/randomdoc",
+    //     "documentUriHash":"4p1+Qt7oxARhuldx",
+    //     "sourceName":"Mailbox Customer Support 2013",
+    //     "documentPosition":0,
     // }
     CoveoAnalytics.prototype.sendClickEvent = function(data, callback){
-        var url = this.endpoint + '/click';
+        if(!this.token){ return false; }
 
-        // TODO: Checks and default on data
+        var url = this.endpoint + '/click';
+        var eventData = {
+            documentUri:         data.documentUri,
+            documentUriHash:     data.documentUriHash,
+            searchQueryUid:      data.searchQueryUid,
+            collectionName:      data.collectionName || 'default',
+            sourceName:          data.sourceName,
+            documentPosition:    data.documentPosition,
+            actionCause:         data.actionCause,
+            documentTitle:       data.documentTitle,
+            documentUrl:         data.documentUrl,
+            queryPipeline:       data.queryPipeline,
+            actionType:          data.actionType,
+            anonymous:           data.anonymous,
+            userGroups:          data.userGroups,
+            userDisplayName:     data.userDisplayName,
+            customData:          data.customData || {},
+            device:              data.device || navigator.userAgent,
+            mobile:              data.mobile,
+            splitTestRunName:    data.splitTestRunName,
+            splitTestRunVersion: data.splitTestRunVersion,
+            userAgent:           data.userAgent || navigator.userAgent,
+            username:            data.username,
+            language:            data.language || navigator.language || navigator.userLanguage
+        };
 
         _getJSONP(url, {
-            clickEvent:     data,
+            clickEvent:     eventData,
             'access_token': this.token
         }, callback);
     };
+
     // sendCustomEvent : Sends a custom event (case deflection, ...) into the
     // usage analytics api
-    // data parameter looks like :
-    // {
-    //   "eventType": "",
-    //   "eventValue": "",
-    //   "lastSearchQueryUid": "",
-    //   "anonymous": false,
-    //   "userGroups": [
-    //     ""
-    //   ],
-    //   "userDisplayName": "",
-    //   "customData": "Map[string,Object]",
-    //   "device": "",
-    //   "mobile": false,
-    //   "splitTestRunName": "",
-    //   "splitTestRunVersion": "",
-    //   "userAgent": "",
-    //   "username": "",
-    //   "language": ""
-    // }
+    //
+    // Required params are:
+    // var data = {
+    //        eventType:  'theeventtype',
+    //        eventValue: 'eventvalue'
+    // };
     CoveoAnalytics.prototype.sendCustomEvent = function(data, callback){
-        var url = this.endpoint + '/custom';
+        if(!this.token){ return false; }
 
-        // TODO: Checks and default on data
+        var url = this.endpoint + '/custom';
         var eventData = {
                 eventType:           data.eventType,
                 eventValue:          data.eventValue,
                 lastSearchQueryUid:  data.lastSearchQueryUid,
                 anonymous:           data.anonymous,
-                userGroups:          data.userGroups,
+                userGroups:          data.userGroups, // This should be an array of strings
                 userDisplayName:     data.userDisplayName,
-                customData:          data.customData || {},
+                customData:          data.customData || {}, // Map string , obj
                 device:              data.device || navigator.userAgent,
                 mobile:              data.mobile,
                 splitTestRunName:    data.splitTestRunName,
                 splitTestRunVersion: data.splitTestRunVersion,
-                userAgent:           data.userAgent,
+                userAgent:           data.userAgent || navigator.userAgent,
                 username:            data.username,
                 language:            data.language || navigator.language || navigator.userLanguage
         };
