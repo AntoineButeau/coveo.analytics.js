@@ -1,15 +1,10 @@
 # coveo.analytics.js
 
-[![Build Status](https://img.shields.io/travis/Coveo/analytics.js.svg)](https://travis-ci.org/Coveo/analytics.js)
-
-
-
-[![Build Status](https://travis-ci.org/Coveo/analytics.js.svg?style=flat-square)](https://travis-ci.org/Coveo/analytics.js)
+[![Build Status](https://img.shields.io/travis/Coveo/analytics.js.svg?style=flat-square)](https://travis-ci.org/Coveo/analytics.js)
 [![Coverage Status](https://img.shields.io/coveralls/Coveo/analytics.js.svg?style=flat-square)](https://coveralls.io/r/Coveo/analytics.js)
-
-[![dev-dependencies](https://img.shields.io/david/dev/Coveo/analytics.js.svg?style=flat-square)]()
-
+[![dev-dependencies](https://img.shields.io/david/dev/Coveo/analytics.js.svg?style=flat-square)](https://github.com/Coveo/analytics.js/blob/master/package.json)
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/Coveo/analytics.js/blob/master/LICENSE)
+
 Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.
 
 [Service Api Documentation](https://usageanalytics.coveo.com/docs/)
