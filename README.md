@@ -2,6 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/Coveo/coveo.analytics.js.svg?style=flat-square)](https://travis-ci.org/Coveo/coveo.analytics.js)
 [![Coverage Status](https://img.shields.io/coveralls/Coveo/coveo.analytics.js.svg?style=flat-square)](https://coveralls.io/r/Coveo/coveo.analytics.js)
+[![Code Climate](https://img.shields.io/codeclimate/github/Coveo/coveo.analytics.js.svg?style=flat-square)]()
 [![dev-dependencies](https://img.shields.io/david/dev/Coveo/coveo.analytics.js.svg?style=flat-square)](https://github.com/Coveo/coveo.analytics.js/blob/master/package.json)
 [![license](http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://github.com/Coveo/coveo.analytics.js/blob/master/LICENSE)
 
