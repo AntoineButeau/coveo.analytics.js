@@ -3,7 +3,7 @@
 var _token = 'bf0eadb7-3444-4abb-ae44-34a0f5b261b9';
 var _getNewUA = function(){
     return Coveo.UA({token: _token});
-}
+};
 
 // TODO: service should be mocked it guess...
 describe('CoveoAnalytics/Analytics', function() {
