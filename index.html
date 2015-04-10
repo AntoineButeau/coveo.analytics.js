@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Coveo.analytics.js by Coveo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Coveo.analytics.js</h1>
+      <h2 class="project-tagline">Send events to coveo analytics service.</h2>
+      <a href="https://github.com/Coveo/coveo.analytics.js" class="btn">View on GitHub</a>
+      <a href="https://github.com/Coveo/coveo.analytics.js/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Coveo/coveo.analytics.js/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="coveoanalyticsjs" class="anchor" href="#coveoanalyticsjs" aria-hidden="true"><span class="octicon octicon-link"></span></a>coveo.analytics.js</h1>
+
+<p><a href="https://travis-ci.org/Coveo/coveo.analytics.js"><img src="https://img.shields.io/travis/Coveo/coveo.analytics.js.svg?style=flat-square" alt="Build Status"></a>
+<a href="https://coveralls.io/r/Coveo/coveo.analytics.js"><img src="https://img.shields.io/coveralls/Coveo/coveo.analytics.js.svg?style=flat-square" alt="Coverage Status"></a>
+<a href="https://codeclimate.com/github/Coveo/coveo.analytics.js"><img src="https://img.shields.io/codeclimate/github/Coveo/coveo.analytics.js.svg?style=flat-square" alt="Code Climate"></a>
+<a href="https://github.com/Coveo/coveo.analytics.js/blob/master/package.json"><img src="https://img.shields.io/david/dev/Coveo/coveo.analytics.js.svg?style=flat-square" alt="dev-dependencies"></a>
+<a href="https://github.com/Coveo/coveo.analytics.js/blob/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat-square" alt="license"></a></p>
+
+<p>Send events to the Coveo Analytics service. No external dependencies, pure JavaScript solution.</p>
+
+<p><a href="https://usageanalytics.coveo.com/docs/">Service Api Documentation</a></p>
+
+<h1>
+<a id="limitations" class="anchor" href="#limitations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Limitations</h1>
+
+<ul>
+<li>You can't have multiple sessions running. (cookies)</li>
+<li>Works with <code>IE9+</code> and recent versions of <code>Firefox/Chrome/other...</code>
+</li>
+</ul>
+
+<h1>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h1>
+
+<div class="highlight highlight-sh"><pre><span class="pl-c"># install development dependencies</span>
+npm install
+<span class="pl-c"># Check standard respects (tabs and spaces should be automatic if your editor</span>
+<span class="pl-c"># supports editorconfig http://editorconfig.org/)</span>
+npm run lint
+<span class="pl-c"># Run tests automatically (open your browser on http://localhost:9876 )</span>
+npm run testlive
+<span class="pl-c"># Wanna see other available tasks</span>
+<span class="pl-c"># just run:</span>
+npm run</pre></div>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>add script in your page:</p>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>https://static.cloud.coveo.com/ua/0.1.0/coveo.analytics.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+
+<p>in the Browser:</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-c">// works with or without new</span>
+<span class="pl-c">// the token can be retrieved by contacting Coveo Support</span>
+<span class="pl-k">var</span> ua <span class="pl-k">=</span> Coveo.UA({token<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>your-token-here<span class="pl-pds">'</span></span>})
+
+ua.sendCustomEvent({
+  eventType<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Your Custom Event Type<span class="pl-pds">'</span></span>,
+  eventValue<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>Your Custom Event Value<span class="pl-pds">'</span></span>  
+})</pre></div>
+
+<h1>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h1>
+
+<p><strong>CoveoAnalytics(options)</strong>: instantiate a new analytics event logger</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> options <span class="pl-k">=</span> {
+  token<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span> <span class="pl-c">// required</span>
+  endpoint<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span> <span class="pl-c">// optional: defaults to https://usageanalytics.coveo.com/rest/v13/analytics</span>
+}</pre></div>
+
+<p><strong>CoveoAnalytics.getStatus(callback)</strong>: gets the status of the analytics service</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-c">// https://usageanalytics.coveo.com/docs/#!/v13_analytics/getServiceStatus</span>
+<span class="pl-k">var</span> <span class="pl-en">callback</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+  <span class="pl-c">// Format of data: { status: '' }</span>
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(data.<span class="pl-c1">status</span>)
+}</pre></div>
+
+<p><strong>CoveoAnalytics.sendSearchEvent(data, callback)</strong>: user searched something</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> data <span class="pl-k">=</span> {<span class="pl-c">/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvent */</span>}
+<span class="pl-k">var</span> <span class="pl-en">callback</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>logged event<span class="pl-pds">'</span></span>)
+}</pre></div>
+
+<p><strong>CoveoAnalytics.sendSearchEvents(data, callback)</strong>: sends multiple search events</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-c">//</span>
+<span class="pl-k">var</span> data <span class="pl-k">=</span> [<span class="pl-c">/* https://usageanalytics.coveo.com/docs/#!/v13_analytics/addSearchEvents */</span>]
+<span class="pl-k">var</span> <span class="pl-en">callback</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(){
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>logged a lot of events<span class="pl-pds">'</span></span>)
+}</pre></div>
+
+<p><strong>CoveoAnalytics.sendClickEvent(data, callback)</strong>: user clicked on something</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-c">// Required params are here</span>
+<span class="pl-c">// You can find others at: https://usageanalytics.coveo.com/docs/#!/v13_analytics/addClickEvent</span>
+<span class="pl-k">var</span> data <span class="pl-k">=</span> {
+  <span class="pl-s"><span class="pl-pds">"</span>actionCause<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>documentOpen<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>searchQueryUid<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>dc39ef98-f06c-48f9-8c61-3425714b8fc0<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>documentUri<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>http://uri.com<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>documentUriHash<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>4p1+Qt7oxARhuldx<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>sourceName<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">"</span>That coveo Source<span class="pl-pds">"</span></span>,
+  <span class="pl-s"><span class="pl-pds">"</span>documentPosition<span class="pl-pds">"</span></span><span class="pl-k">:</span><span class="pl-c1">0</span>,
+}
+<span class="pl-k">var</span> <span class="pl-en">callback</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">resp</span>){
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>logged event with<span class="pl-pds">'</span></span>, resp)
+}</pre></div>
+
+<p><strong>CoveoAnalytics.sendCustomEvent(data, callback)</strong>: send events other than click/search</p>
+
+<div class="highlight highlight-js"><pre><span class="pl-c">// Required params are here</span>
+<span class="pl-c">// You can find others at: https://usageanalytics.coveo.com/docs/#!/v13_analytics/addCustomEventViaPost</span>
+<span class="pl-k">var</span> data <span class="pl-k">=</span> {
+  eventType<span class="pl-k">:</span>  <span class="pl-s"><span class="pl-pds">'</span>theeventtype<span class="pl-pds">'</span></span>,
+  eventValue<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>eventvalue<span class="pl-pds">'</span></span>
+};
+<span class="pl-k">var</span> <span class="pl-en">callback</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">resp</span>){
+  <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>logged event with<span class="pl-pds">'</span></span>, resp)
+}</pre></div>
+
+<p><strong>CoveoAnalytics.deleteSession()</strong>: <strong>this call is not yet supported (to be released soon)</strong> clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Coveo/coveo.analytics.js">Coveo.analytics.js</a> is maintained by <a href="https://github.com/Coveo">Coveo</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
+
