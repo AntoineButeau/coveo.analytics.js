@@ -4,21 +4,20 @@ notifications:
     on_success: never
     on_failure: never
 node_js:
-  - stable
+- stable
 script:
-  - npm run lint
-  - npm run test
-  - npm run min
+- npm run lint
+- npm run test
+- npm run min
 after_success:
-  - mkdir -p "deploy/$TRAVIS_TAG"
-  - cp coveo.analytics.js coveo.analytics.min.js coveo.analytics.min.map "deploy/$TRAVIS_TAG"
-#    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+- mkdir -p "deploy/$TRAVIS_TAG"
+- cp coveo.analytics.js coveo.analytics.min.js coveo.analytics.min.map "deploy/$TRAVIS_TAG"
 deploy:
   provider: s3
-  access_key_id: AKIAJ27XTXPEB34RSVEQ
+  access_key_id: AKIAJQPGENIWTJ5EUEDQ
   secret_access_key:
-    secure: W7follGE8TO7w0FIM70iUhiSRQinHuotGM+QHSzGylfATP4G7TlTsivFuVAOQx9IS4Sr9nSbRZdcohlu1VAcTmxPUgvz++93rVNhOwmOhIfAxVLgVHREo+gdUEIfOPSOCw9NnTrOU1vad/YcD02LmEubqEUW+Z1wugIZkqoZNKc=
-  bucket: static.coveodemo.com
+    secure: BA2LxB1rh/l6rHiovxiVIFU1tw7FTZxTyAA/72qkzu73vCr+4EkZG4XIvF2grlm4kGbADjVrkYt5gxwy5ZQs8Nq9W0Ro9oTejb5BL/qs31xfGnaGD3K6f7o0n3meLM4z+5NylnNY6L2MJT9ZqDC5j5jyKqMdXo/Rc5rqdf9WA5A=
+  bucket: coveo-public-content
   skip_cleanup: true
   local-dir: deploy
   upload-dir: coveo.analytics.js
