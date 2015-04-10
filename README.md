@@ -30,6 +30,17 @@ npm run testlive
 npm run
 ```
 
+# Deployment
+
+publish your version tag and update `latest` tag
+
+```sh
+git tag -a v0.0.0 -m "v0.0.0 new features =D"
+# -f needed to override tag locally and when pushing
+git tag -f -a latest -m "v0.0.0"
+git push -f --tags
+```
+
 # Usage
 
 add script in your page:
