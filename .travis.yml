@@ -25,4 +25,4 @@ deploy:
   acl: public_read
   on:
     tags: true
-    repo: Coveo/analytics.js
+    repo: Coveo/coveo.analytics.js
