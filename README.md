@@ -41,6 +41,19 @@ git tag -f -a latest -m "v0.0.0"
 git push -f --tags
 ```
 
+# Web Analytics Usage
+
+```
+(function(k,r,y,p,t,o,n){
+  k.CoveoAnalytics=t;k[t]=k[t]||function(){(k[t].q=k[t].q||[]).push(arguments)};
+  k[t].t=1*new Date();o=r.createElement(y);o.async=1;o.src=p;
+  n = r.getElementsByTagName(y)[0];n.parentNode.insertBefore(o,n);
+})(window,document,'script','//static.cloud.coveo.com/coveo.analytics.js/latest/coveo.analytics.js','coveoua');
+
+coveoua('init','yourtoken');
+coveoua('send','pageView');
+```
+
 # Usage
 
 add script in your page:
