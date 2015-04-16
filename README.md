@@ -45,13 +45,13 @@ git push -f --tags
 
 ```
 (function(k,r,y,p,t,o,n){
-  k.CoveoAnalytics=t;k[t]=k[t]||function(){(k[t].q=k[t].q||[]).push(arguments)};
-  k[t].t=1*new Date();o=r.createElement(y);o.async=1;o.src=p;
-  n = r.getElementsByTagName(y)[0];n.parentNode.insertBefore(o,n);
-})(window,document,'script','//static.cloud.coveo.com/coveo.analytics.js/latest/coveo.analytics.js','coveoua');
+n='CoveoAnalytics';k[n]=k[n]||function(){k[n].q=(k[n].q|| []).push(arguments)};
+k[n].t=Date.now();o=r.createElement(y);o.async=1;o.src=p;
+t=r.getElementByTagName(y);t.parentNode.insertBefore(o,t)
+})(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/latest/coveo.analytics.js')
 
-coveoua('init','yourtoken');
-coveoua('send','pageView');
+CoveoAnalytics('init','token');
+CoveoAnalytics('send','pageView')
 ```
 
 # Usage
