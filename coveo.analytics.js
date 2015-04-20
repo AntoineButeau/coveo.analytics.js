@@ -48,19 +48,19 @@
 
     var getDeviceName = function (){
         var userAgent = navigator.userAgent;
-        if (userAgent.match(/Android/i)) return "Android";
-        if (userAgent.match(/BlackBerry/i)) return "BlackBerry";
-        if (userAgent.match(/iPhone/i)) return "iPhone";
-        if (userAgent.match(/iPad/i)) return "iPad";
-        if (userAgent.match(/iPod/i)) return "iPod";
-        if (userAgent.match(/Opera Mini/i)) return "Opera Mini";
-        if (userAgent.match(/IEMobile/i)) return "IE Mobile";
-        if (userAgent.match(/Chrome/i)) return "Chrome";
-        if (userAgent.match(/MSIE/i) || userAgent.match(/Trident/i)) return "IE";
-        if (userAgent.match(/Opera/i)) return "Opera";
-        if (userAgent.match(/Firefox/i)) return "Firefox";
-        if (userAgent.match(/Safari/i)) return "Safari";
-        return "Others";
+        if (userAgent.match(/Android/i)){ return 'Android'; }
+        if (userAgent.match(/BlackBerry/i)){ return 'BlackBerry'; }
+        if (userAgent.match(/iPhone/i)){ return 'iPhone'; }
+        if (userAgent.match(/iPad/i)){ return 'iPad'; }
+        if (userAgent.match(/iPod/i)){ return 'iPod'; }
+        if (userAgent.match(/Opera Mini/i)){ return 'Opera Mini'; }
+        if (userAgent.match(/IEMobile/i)){ return 'IE Mobile'; }
+        if (userAgent.match(/Chrome/i)){ return 'Chrome'; }
+        if (userAgent.match(/MSIE/i) || userAgent.match(/Trident/i)){ return 'IE'; }
+        if (userAgent.match(/Opera/i)){ return 'Opera'; }
+        if (userAgent.match(/Firefox/i)){ return 'Firefox'; }
+        if (userAgent.match(/Safari/i)){ return 'Safari'; }
+        return 'Others';
     };
 
     // XHR Utils
@@ -316,10 +316,6 @@
                 anonymous:  true
             };
             var defaultCustomData = {
-                month:
-                day:
-                hour:
-                dayhour:
                 hostname:     window.location.hostname,
                 pathname:     window.location.pathname,
                 search:       window.location.search,
