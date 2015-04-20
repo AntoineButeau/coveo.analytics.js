@@ -1,4 +1,4 @@
-//* coveo.analytics.js 0.1.3
+//* coveo.analytics.js 0.2.0
 //* https://github.com/coveo/coveo.analytics.js
 //* (c) 2015 Coveo
 //* freely distributed under the MIT license
@@ -316,6 +316,10 @@
                 anonymous:  true
             };
             var defaultCustomData = {
+                month:
+                day:
+                hour:
+                dayhour:
                 hostname:     window.location.hostname,
                 pathname:     window.location.pathname,
                 search:       window.location.search,
