@@ -17,6 +17,52 @@
     var isArray = Array.isArray || function(obj) {
         return toString.call(obj) === '[object Array]';
     };
+
+    // Object Assign ponyfill from https://github.com/sindresorhus/object-assign
+    function toobj(val){
+        if(val == null){
+            throw new TypeError('objectAssign cannot be called with null or undefined');
+        }
+        return Object(val);
+    }
+    // Object assign ponyfill
+    var objectAssign = Object.assign || function(target, source){
+        var from;
+        var to = toobj(target);
+        var assign = function(key){to[key] = from[key]; };
+
+        for(var s = 1; s < arguments.length; s++){
+            from = arguments[s];
+            Object.keys(Object(from)).forEach(assign);
+        }
+        return target;
+    };
+
+    // User Agent Utils
+    var isMobile = function () {
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ){
+            return true;
+        }
+        return false;
+    };
+
+    var getDeviceName = function (){
+        var userAgent = navigator.userAgent;
+        if (userAgent.match(/Android/i)) return "Android";
+        if (userAgent.match(/BlackBerry/i)) return "BlackBerry";
+        if (userAgent.match(/iPhone/i)) return "iPhone";
+        if (userAgent.match(/iPad/i)) return "iPad";
+        if (userAgent.match(/iPod/i)) return "iPod";
+        if (userAgent.match(/Opera Mini/i)) return "Opera Mini";
+        if (userAgent.match(/IEMobile/i)) return "IE Mobile";
+        if (userAgent.match(/Chrome/i)) return "Chrome";
+        if (userAgent.match(/MSIE/i) || userAgent.match(/Trident/i)) return "IE";
+        if (userAgent.match(/Opera/i)) return "Opera";
+        if (userAgent.match(/Firefox/i)) return "Firefox";
+        if (userAgent.match(/Safari/i)) return "Safari";
+        return "Others";
+    };
+
     // XHR Utils
     // var XHR = root.XMLHttpRequest;
 
@@ -190,8 +236,8 @@
                 userGroups:          data.userGroups,
                 userDisplayName:     data.userDisplayName,
                 customData:          data.customData || {},
-                device:              data.device || navigator.userAgent,
-                mobile:              data.mobile,
+                device:              data.device || getDeviceName(),
+                mobile:              data.mobile || isMobile(),
                 splitTestRunName:    data.splitTestRunName,
                 splitTestRunVersion: data.splitTestRunVersion,
                 userAgent:           data.userAgent || navigator.userAgent,
@@ -226,7 +272,7 @@
                     userDisplayName:     data.userDisplayName,
                     customData:          data.customData || {}, // Map string , obj
                     device:              data.device || navigator.userAgent,
-                    mobile:              data.mobile,
+                    mobile:              data.mobile || isMobile(),
                     splitTestRunName:    data.splitTestRunName,
                     splitTestRunVersion: data.splitTestRunVersion,
                     userAgent:           data.userAgent || navigator.userAgent,
@@ -249,27 +295,50 @@
      **************************************************************/
 
 
-    var _store = {}
+    var _store = {};
+    var CoveoAnalytics;
 
     var simpleActions = {
         'init': function(opts){
-            _store.ua = new CoveoUA({token:opts})
+            _store.ua = new CoveoUA({token: opts});
         },
+        // opts can be a string or a custom event object
         'send': function(opts){
-            if(typeof opts === "string"){
-
+            var data = {};
+            if(typeof opts === 'string'){
+                data = { eventType: opts };
+            }else{
+                data = objectAssign(data, opts);
             }
 
-            _store.ua.sendCustomEvent({
+            var defaultData = {
+                eventValue: window.location.href,
+                anonymous:  true
+            };
+            var defaultCustomData = {
+                hostname:     window.location.hostname,
+                pathname:     window.location.pathname,
+                search:       window.location.search,
+                hash:         window.location.hash,
+                protocol:     window.location.protocol,
+                port:         window.location.port,
+                origin:       window.location.origin,
+                referrer:     document.referrer,
+                referrerHost: document.referrer.split('//').pop().split('/')[0],
+                pageTitle:    document.title,
+                accessDate:   CoveoAnalytics.t || Date.now()
+            };
 
-            });
+            data = objectAssign({}, defaultData, data);
+            data.customData = objectAssign({}, defaultCustomData, data.customData);
+
+            _store.ua.sendCustomEvent(data);
         }
     };
 
-
     // CoveoAnalytics.q ; // is the queue of last called actions before lib was included
-    // CoveoAnalytics.l ; // Time where the page was really loaded (include this in custom data)
-    var CoveoAnalytics = function(action,params){
+    // CoveoAnalytics.t ; // Time where the page was really loaded (include this in custom data)
+    CoveoAnalytics = function(action, params){
         simpleActions[action](params);
     };
     CoveoAnalytics.t = 1 * new Date();

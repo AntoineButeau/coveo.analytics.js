@@ -43,14 +43,14 @@ git push -f --tags
 
 # Web Analytics Usage
 
-```
+```js
 (function(k,r,y,p,t,o,n){
-n='CoveoAnalytics';k[n]=k[n]||function(){k[n].q=(k[n].q|| []).push(arguments)};
+n='CoveoAnalytics';k[n]=k[n]||function(){(k[n].q=k[n].q|| []).push(arguments)};
 k[n].t=Date.now();o=r.createElement(y);o.async=1;o.src=p;
-t=r.getElementByTagName(y);t.parentNode.insertBefore(o,t)
-})(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/latest/coveo.analytics.js')
+t=r.getElementsByTagName(y)[0];t.parentNode.insertBefore(o,t)
+})(window,document,'script','/coveo.analytics.js')
 
-CoveoAnalytics('init','token');
+CoveoAnalytics('init','00000000-YOUR-ToKe-N000-000000000000');
 CoveoAnalytics('send','pageView')
 ```
 
