@@ -8,7 +8,7 @@
     "testlive": "node ./node_modules/karma/bin/karma start",
     "min": "npm run uglify",
     "lint": "node ./node_modules/eslint/bin/eslint.js coveo.analytics.js",
-    "uglify": "node ./node_modules/uglify-js/bin/uglifyjs coveo.analytics.js --comments \"/^\\*/\" -o ./coveo.analytics.min.js --source-map coveo.analytics.min.map"
+    "uglify": "node ./node_modules/uglify-js/bin/uglifyjs coveo.analytics.js --comments '/^\\* /' -o ./coveo.analytics.min.js --source-map coveo.analytics.min.map"
   },
   "repository": {
     "type": "git",
