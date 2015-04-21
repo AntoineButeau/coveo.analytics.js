@@ -43,15 +43,19 @@ git push -f --tags
 
 # Web Analytics Usage
 
-```js
+By the way, if you need to log analytics on any web page, add this snippet in your page.
+
+```html
+<script>
 (function(k,r,y,p,t,o,n){
 n='CoveoAnalytics';k[n]=k[n]||function(){(k[n].q=k[n].q|| []).push(arguments)};
 k[n].t=Date.now();o=r.createElement(y);o.async=1;o.src=p;
 t=r.getElementsByTagName(y)[0];t.parentNode.insertBefore(o,t)
-})(window,document,'script','static.cloud.coveo.com/coveo.analytics.js/latest/coveo.analytics.js')
+})(window,document,'script','https://static.cloud.coveo.com/coveo.analytics.js/latest/coveo.analytics.js')
 
 CoveoAnalytics('init','00000000-YOUR-ToKe-N000-000000000000');
 CoveoAnalytics('send','pageView')
+</script>
 ```
 
 # Usage
