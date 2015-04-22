@@ -326,7 +326,7 @@
                 referrer:     document.referrer,
                 referrerHost: document.referrer.split('//').pop().split('/')[0],
                 pageTitle:    document.title,
-                accessDate:   CoveoAnalytics.t || Date.now()
+                accessDate:   JSON.stringify(new Date(CoveoAnalytics.t || Date.now()))
             };
 
             data = objectAssign({}, defaultData, data);
