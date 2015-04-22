@@ -325,7 +325,7 @@
                 origin:       window.location.origin,
                 referrer:     document.referrer,
                 referrerHost: document.referrer.split('//').pop().split('/')[0],
-                pageTitle:    document.title,
+                pageTitle:    document.title
                 // accessDate:   new Date(CoveoAnalytics.t || Date.now())
             };
 
