@@ -10,9 +10,7 @@
     var doc = this.document;
 
     /***************************************************************
-     *
      *                         Utils
-     *
      **************************************************************/
     var isArray = Array.isArray || function(obj) {
         return toString.call(obj) === '[object Array]';
@@ -99,9 +97,7 @@
     };
 
     /***************************************************************
-     *
      *                      CoveoAnalytics
-     *
      **************************************************************/
 
     // CoveoAnalytics
@@ -289,12 +285,8 @@
 
 
     /***************************************************************
-     *
      *                 Simple Auto Analytics
-     *
      **************************************************************/
-
-
     var _store = {};
     var CoveoAnalytics;
 
@@ -360,16 +352,13 @@
 
 
     /***************************************************************
-     *
      *                         Export
-     *
      **************************************************************/
 
-    // Export CoveoAnalytics so we are able to use it in **node.js**
-    // or in the browser
+    // Export CoveoAnalytics so we are able to use it in node.js or in the browser
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = {
-            CoveoUA:        CoveoUA,
+            UA:             CoveoUA,
             CoveoAnalytics: CoveoAnalytics
         };
     } else {
