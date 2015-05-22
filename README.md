@@ -150,4 +150,4 @@ var callback = function(resp){
 }
 ```
 
-**CoveoAnalytics.deleteSession()**: **this call is not yet supported (to be released soon)** clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.
+**CoveoAnalytics.deleteSession()**: clears cookies, you lose your visitor id and your current session is stopped. Next queries will get you a new one.
