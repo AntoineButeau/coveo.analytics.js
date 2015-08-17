@@ -105,7 +105,7 @@
     // options : {
     //   endpoint: 'https://usageanalytics.coveo.com'
     // }
-    var _defaultVersion = 13;
+    var _defaultVersion = 14;
     var _defaultEndpoint = 'https://usageanalytics.coveo.com/rest/v' + _defaultVersion + '/analytics';
 
     function CoveoUA(options){
